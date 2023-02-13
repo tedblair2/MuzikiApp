@@ -18,6 +18,7 @@ import androidx.core.app.NotificationCompat
 import com.example.musicplayer.*
 import com.example.musicplayer.R
 import com.example.musicplayer.Resources.audioList
+import com.example.musicplayer.application.*
 import com.example.musicplayer.model.Audio
 import com.google.android.exoplayer2.*
 import com.google.android.exoplayer2.audio.AudioAttributes
@@ -61,6 +62,7 @@ class PlayerService:Service(){
     }
 
     override fun onStartCommand(intent: Intent?, flags: Int, startId: Int): Int {
+        onCreate()
         position= intent?.getIntExtra("position",-1)!!
         val sender=intent.getStringExtra("sender")
         arraylist = if (sender != null && sender=="album"){
@@ -76,7 +78,8 @@ class PlayerService:Service(){
             player?.stop()
         }
         player!!.repeatMode=Player.REPEAT_MODE_ALL
-        notificationManager=PlayerNotificationManager.Builder(applicationContext, notificationId,channel_id)
+        notificationManager=PlayerNotificationManager.Builder(applicationContext, notificationId,
+            channel_id)
             .setNotificationListener(notificationListener)
             .setMediaDescriptionAdapter(descriptionAdapter)
             .setChannelImportance(IMPORTANCE_HIGH)
@@ -104,6 +107,8 @@ class PlayerService:Service(){
     }
 
     override fun onDestroy() {
+        mediaSessionCompat.isActive=false
+        mediaSessionCompat.release()
         notificationManager.setPlayer(null)
         if(player != null){
             player?.stop()
@@ -123,7 +128,7 @@ class PlayerService:Service(){
             val nextIntent=Intent(applicationContext,PlayerReceiver::class.java).setAction(action_next)
             val nextPending=PendingIntent.getBroadcast(applicationContext,0,nextIntent,PendingIntent.FLAG_UPDATE_CURRENT)
 
-            val next=NotificationCompat.Action(R.drawable.ic_next,"next",nextPending)
+            val next=NotificationCompat.Action(R.drawable.ic_close,"next",nextPending)
             val map= hashMapOf<String,NotificationCompat.Action>()
             map["next"]=next
             return map
@@ -140,8 +145,8 @@ class PlayerService:Service(){
     private val notificationListener=object :PlayerNotificationManager.NotificationListener{
         override fun onNotificationCancelled(notificationId: Int, dismissedByUser: Boolean) {
             super.onNotificationCancelled(notificationId, dismissedByUser)
+            player?.playWhenReady=false
             stopForeground(true)
-            if (player!!.isPlaying) player!!.pause()
         }
 
         override fun onNotificationPosted(
