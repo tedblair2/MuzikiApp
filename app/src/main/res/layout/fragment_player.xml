@@ -1,0 +1,85 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="@color/colorPrimary"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    tools:context=".fragments.PlayerFragment">
+
+    <androidx.cardview.widget.CardView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:elevation="15dp"
+        android:id="@+id/card"
+        app:cardBackgroundColor="@color/colorPrimaryDark"
+        app:cardCornerRadius="10dp">
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:padding="6dp"
+            android:background="@color/colorPrimaryDark">
+
+            <ImageView
+                android:layout_width="50dp"
+                android:layout_height="50dp"
+                android:background="@color/white"
+                android:src="@drawable/p32"
+                android:id="@+id/img_music"/>
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="23dp"
+                android:layout_toEndOf="@id/img_music"
+                android:text=""
+                android:textColor="@color/white"
+                android:layout_toStartOf="@id/layout"
+                android:layout_marginStart="5dp"
+                style="@style/TextAppearance.MaterialComponents.Subtitle1"
+                android:id="@+id/song_name"/>
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="23dp"
+                android:textColor="@color/white"
+                android:layout_toEndOf="@id/img_music"
+                android:layout_below="@id/song_name"
+                android:text=""
+                android:layout_toStartOf="@id/layout"
+                android:layout_marginStart="5dp"
+                style="@style/TextAppearance.MaterialComponents.Subtitle1"
+                android:id="@+id/song_artist"/>
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:id="@+id/layout"
+                android:layout_centerVertical="true"
+                android:layout_marginEnd="4dp"
+                android:layout_alignParentEnd="true">
+
+                <ImageView
+                    android:layout_width="35dp"
+                    android:layout_height="35dp"
+                    android:layout_gravity="center_vertical"
+                    android:src="@drawable/ic_previous"
+                    android:layout_marginEnd="5dp"
+                    android:id="@+id/prev"/>
+                <ImageView
+                    android:layout_width="40dp"
+                    android:layout_height="40dp"
+                    android:src="@drawable/ic_pause"
+                    android:layout_marginEnd="5dp"
+                    android:id="@+id/play"/>
+                <ImageView
+                    android:layout_width="35dp"
+                    android:layout_height="35dp"
+                    android:layout_gravity="center_vertical"
+                    android:src="@drawable/ic_next"
+                    android:layout_marginEnd="5dp"
+                    android:id="@+id/next"/>
+
+            </LinearLayout>
+        </RelativeLayout>
+    </androidx.cardview.widget.CardView>
+
+</RelativeLayout>

@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/colorPrimary"
+    tools:context=".MainActivity">
+
+
+    <com.google.android.material.tabs.TabLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:tabIndicatorFullWidth="true"
+        app:tabIndicatorGravity="center"
+        app:tabIndicatorColor="@color/teal_700"
+        app:tabIndicator="@drawable/tab_back"
+        android:background="#1B1A1A"
+        app:tabIndicatorHeight="42dp"
+        app:tabTextColor="@color/white"
+        android:id="@+id/tablayout"/>
+
+    <androidx.viewpager.widget.ViewPager
+        android:layout_width="match_parent"
+        android:layout_below="@id/tablayout"
+        android:layout_height="wrap_content"
+        android:layout_above="@id/layout"
+        android:id="@+id/viewpager"/>
+    <FrameLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:id="@+id/layout">
+
+        <fragment
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:name="com.example.musicplayer.fragments.PlayerFragment"
+            tools:layout="@layout/fragment_player"/>
+    </FrameLayout>
+</RelativeLayout>

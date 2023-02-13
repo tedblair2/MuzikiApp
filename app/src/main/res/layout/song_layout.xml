@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_marginTop="5dp"
+    android:background="@color/colorPrimaryDark">
+
+    <ImageView
+        android:layout_width="55dp"
+        android:layout_height="55dp"
+        android:src="@drawable/baseline_music_note_24"
+        android:id="@+id/music_imag"/>
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="23dp"
+        android:ellipsize="marquee"
+        android:singleLine="true"
+        android:id="@+id/songname"
+        android:text="songnane"
+        android:textColor="@color/white"
+        android:layout_toEndOf="@id/music_imag"
+        style="@style/TextAppearance.MaterialComponents.Subtitle1"
+        android:layout_marginStart="8dp"
+        android:layout_toStartOf="@id/more"
+        android:layout_marginTop="4dp"/>
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/songduration"
+        android:layout_below="@id/songname"
+        android:text="3:20"
+        android:textColor="@color/white"
+        android:layout_toEndOf="@id/music_imag"
+        style="@style/TextAppearance.MaterialComponents.Subtitle1"
+        android:layout_marginStart="8dp"
+        android:layout_toStartOf="@id/more"
+        android:layout_marginTop="4dp"/>
+
+    <ImageView
+        android:layout_width="30dp"
+        android:layout_height="35dp"
+        android:layout_marginStart="4dp"
+        android:src="@drawable/baseline_more_vert_24"
+        android:layout_alignParentEnd="true"
+        android:layout_centerVertical="true"
+        android:id="@+id/more"/>
+</RelativeLayout>
