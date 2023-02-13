@@ -128,7 +128,7 @@ class PlayerService:Service(){
             val nextIntent=Intent(applicationContext,PlayerReceiver::class.java).setAction(action_next)
             val nextPending=PendingIntent.getBroadcast(applicationContext,0,nextIntent,PendingIntent.FLAG_UPDATE_CURRENT)
 
-            val next=NotificationCompat.Action(R.drawable.ic_close,"next",nextPending)
+            val next=NotificationCompat.Action(R.drawable.ic_next,"next",nextPending)
             val map= hashMapOf<String,NotificationCompat.Action>()
             map["next"]=next
             return map
