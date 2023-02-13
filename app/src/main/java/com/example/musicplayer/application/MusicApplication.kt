@@ -1,9 +1,10 @@
-package com.example.musicplayer
+package com.example.musicplayer.application
 
 import android.app.Application
 import android.app.NotificationChannel
 import android.app.NotificationManager
 import android.os.Build
+import com.example.musicplayer.R
 
 const val channel_id="MusicPlayer"
 const val channel_id2="Music"
