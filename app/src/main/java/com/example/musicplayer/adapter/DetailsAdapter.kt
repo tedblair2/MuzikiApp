@@ -39,7 +39,7 @@ class DetailsAdapter(private var arrayList: ArrayList<Audio>, private val contex
             val bitmap= BitmapFactory.decodeByteArray(art,0,art.size)
             holder.binding.musicImag.setImageBitmap(bitmap)
         }else{
-            holder.binding.musicImag.setImageResource(R.drawable.baseline_music_note_24)
+            holder.binding.musicImag.setImageResource(R.drawable.p32)
         }
         holder.itemView.setOnClickListener {
             val intent=Intent(context,PlayerService::class.java)
