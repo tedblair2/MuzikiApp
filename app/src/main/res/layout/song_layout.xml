@@ -34,7 +34,7 @@
         android:text="3:20"
         android:textColor="@color/white"
         android:layout_toEndOf="@id/music_imag"
-        style="@style/TextAppearance.MaterialComponents.Subtitle1"
+        style="@style/TextAppearance.MaterialComponents.Subtitle2"
         android:layout_marginStart="8dp"
         android:layout_toStartOf="@id/more"
         android:layout_marginTop="4dp"/>
