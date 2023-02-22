@@ -13,7 +13,9 @@ import android.widget.PopupMenu
 import androidx.recyclerview.widget.RecyclerView
 import com.example.musicplayer.PlayerActivty
 import com.example.musicplayer.R
+import com.example.musicplayer.Resources.audioList
 import com.example.musicplayer.databinding.SongLayoutBinding
+import com.example.musicplayer.fragments.AlbumFragment.Companion.albumlist
 import com.example.musicplayer.model.Audio
 import com.example.musicplayer.services.PlayerService
 import com.google.android.material.snackbar.Snackbar
@@ -70,6 +72,7 @@ class SongAdapter(private var arrayList: ArrayList<Audio>,private val context: C
         if (isdeleted){
             context.contentResolver.delete(uri,null,null)
             arrayList.removeAt(position)
+            audioList.removeAt(position)
             notifyItemRemoved(position)
             notifyItemRangeChanged(position,arrayList.size)
             Snackbar.make(view,"File Deleted", Snackbar.LENGTH_LONG).show()

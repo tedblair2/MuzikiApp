@@ -10,10 +10,12 @@ import com.example.musicplayer.databinding.FragmentAlbumBinding
 import com.example.musicplayer.model.Audio
 
 class AlbumFragment : Fragment() {
+    companion object{
+        var albumlist= arrayListOf<Audio>()
+    }
     private var _binding:FragmentAlbumBinding?=null
     private val binding get() = _binding!!
     private lateinit var albumAdapter: AlbumAdapter
-    private var albumlist= arrayListOf<Audio>()
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?,
                               savedInstanceState: Bundle?): View {
