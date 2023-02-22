@@ -179,7 +179,9 @@ class PlayerService:Service(){
         ): Bitmap? {
             val art=player.currentMediaItem!!.mediaMetadata.artworkData
             val bitmap=if (art != null){
-                BitmapFactory.decodeByteArray(art,0,art.size)
+                val options = BitmapFactory.Options()
+                options.inSampleSize = 2 // reduce sample size by half
+                BitmapFactory.decodeByteArray(art, 0, art.size, options)
             }else{
                 BitmapFactory.decodeResource(resources,R.drawable.p32)
             }
@@ -250,7 +252,11 @@ class PlayerService:Service(){
     }
     private fun getAlbumArt(uri: String): ByteArray? {
         val retriever = MediaMetadataRetriever()
-        retriever.setDataSource(uri)
+        try{
+            retriever.setDataSource(uri)
+        }catch (e:IllegalArgumentException){
+            e.printStackTrace()
+        }
         return retriever.embeddedPicture
     }
     private fun getUniqueSongs(list:ArrayList<Audio>):ArrayList<Audio>{

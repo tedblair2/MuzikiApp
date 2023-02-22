@@ -24,7 +24,7 @@ class AlbumFragment : Fragment() {
         albumAdapter= AlbumAdapter(albumlist,requireContext())
         binding.recyclerAlbum.layoutManager=GridLayoutManager(requireContext(),2)
         binding.recyclerAlbum.adapter=albumAdapter
-
+        albumAdapter.notifyDataSetChanged()
 
         return binding.root
     }

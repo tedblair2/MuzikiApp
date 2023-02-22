@@ -5,7 +5,6 @@ import android.view.*
 import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.musicplayer.MainActivity
-import com.example.musicplayer.PassSong
 import com.example.musicplayer.adapter.SongAdapter
 import com.example.musicplayer.databinding.FragmentSongsBinding
 import com.example.musicplayer.model.Audio

@@ -129,7 +129,9 @@ class PlayerActivty:AppCompatActivity(),ServiceConnection,PlayerControls{
     private fun getArtWork(art: ByteArray?) {
         var bitmap:Bitmap?=null
         if (art != null){
-            bitmap= BitmapFactory.decodeByteArray(art,0,art.size)
+            val options = BitmapFactory.Options()
+            options.inSampleSize = 2 // reduce sample size by half
+            bitmap= BitmapFactory.decodeByteArray(art,0,art.size,options)
             loadAnimation(bitmap)
             Palette.from(bitmap).generate { palette->
                 val swatch=palette!!.dominantSwatch

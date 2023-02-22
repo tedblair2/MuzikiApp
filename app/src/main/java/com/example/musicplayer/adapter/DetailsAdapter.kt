@@ -36,7 +36,9 @@ class DetailsAdapter(private var arrayList: ArrayList<Audio>, private val contex
         holder.binding.songduration.text=getTime(song.duration)
         val art=getAlbumArt(song.path)
         if (art != null){
-            val bitmap= BitmapFactory.decodeByteArray(art,0,art.size)
+            val options = BitmapFactory.Options()
+            options.inSampleSize = 2 // reduce sample size by half
+            val bitmap = BitmapFactory.decodeByteArray(art, 0, art.size, options)
             holder.binding.musicImag.setImageBitmap(bitmap)
         }else{
             holder.binding.musicImag.setImageResource(R.drawable.p32)
@@ -110,7 +112,11 @@ class DetailsAdapter(private var arrayList: ArrayList<Audio>, private val contex
     }
     private fun getAlbumArt(uri: String): ByteArray? {
         val retriever = MediaMetadataRetriever()
-        retriever.setDataSource(uri)
+        try{
+            retriever.setDataSource(uri)
+        }catch (e:IllegalArgumentException){
+            e.printStackTrace()
+        }
         return retriever.embeddedPicture
     }
 }

@@ -5,22 +5,15 @@ import android.content.Context
 import android.content.Intent
 import android.graphics.BitmapFactory
 import android.media.MediaMetadataRetriever
-import android.media.MediaPlayer
-import android.net.Uri
-import android.os.Bundle
 import android.provider.MediaStore
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.FrameLayout
 import android.widget.PopupMenu
-import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.RecyclerView
-import com.example.musicplayer.PassSong
 import com.example.musicplayer.PlayerActivty
 import com.example.musicplayer.R
 import com.example.musicplayer.databinding.SongLayoutBinding
-import com.example.musicplayer.fragments.PlayerFragment
 import com.example.musicplayer.model.Audio
 import com.example.musicplayer.services.PlayerService
 import com.google.android.material.snackbar.Snackbar
@@ -41,7 +34,9 @@ class SongAdapter(private var arrayList: ArrayList<Audio>,private val context: C
         holder.binding.songduration.text=getTime(song.duration)
         val art=getAlbumArt(song.path)
         if (art != null){
-            val bitmap=BitmapFactory.decodeByteArray(art,0,art.size)
+            val options = BitmapFactory.Options()
+            options.inSampleSize = 2 // reduce sample size by half
+            val bitmap = BitmapFactory.decodeByteArray(art, 0, art.size, options)
             holder.binding.musicImag.setImageBitmap(bitmap)
         }else{
             holder.binding.musicImag.setImageResource(R.drawable.p32)
@@ -116,7 +111,11 @@ class SongAdapter(private var arrayList: ArrayList<Audio>,private val context: C
     }
     private fun getAlbumArt(uri: String): ByteArray? {
         val retriever = MediaMetadataRetriever()
-        retriever.setDataSource(uri)
+        try{
+            retriever.setDataSource(uri)
+        }catch (e:IllegalArgumentException){
+            e.printStackTrace()
+        }
         return retriever.embeddedPicture
     }
 }

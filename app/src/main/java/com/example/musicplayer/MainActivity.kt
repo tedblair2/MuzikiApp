@@ -1,6 +1,6 @@
 package com.example.musicplayer
 
-import android.Manifest.permission.READ_EXTERNAL_STORAGE
+import android.Manifest.permission.WRITE_EXTERNAL_STORAGE
 import android.content.Intent
 import android.content.pm.PackageManager
 import android.graphics.Color
@@ -11,7 +11,6 @@ import android.provider.MediaStore.Audio.Media
 import android.view.Menu
 import android.view.MenuInflater
 import android.view.MenuItem
-import android.view.View
 import android.widget.EditText
 import android.widget.ImageView
 import android.widget.Toast
@@ -25,13 +24,12 @@ import com.example.musicplayer.databinding.ActivityMainBinding
 import com.example.musicplayer.fragments.AlbumFragment
 import com.example.musicplayer.fragments.SongsFragment
 import com.example.musicplayer.model.Audio
-import com.example.musicplayer.services.PlayerService
 
 const val REQUEST_STORAGE=120
 class MainActivity : AppCompatActivity(){
     private lateinit var binding: ActivityMainBinding
     private lateinit var viewPagerAdapter: ViewPagerAdapter
-    private val permission=READ_EXTERNAL_STORAGE
+    private val permission= WRITE_EXTERNAL_STORAGE
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding= ActivityMainBinding.inflate(layoutInflater)

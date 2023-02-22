@@ -43,7 +43,9 @@ class AlbumActivity : AppCompatActivity(),ServiceConnection {
         val path=list[0].path
         val art=getAlbumArt(path)
         if (art != null){
-            val bitmap=BitmapFactory.decodeByteArray(art,0,art.size)
+            val options = BitmapFactory.Options()
+            options.inSampleSize = 2 // reduce sample size by half
+            val bitmap = BitmapFactory.decodeByteArray(art, 0, art.size, options)
             binding.albumImg.setImageBitmap(bitmap)
         }else{
             binding.albumImg.setImageResource(R.drawable.p32)
@@ -52,6 +54,7 @@ class AlbumActivity : AppCompatActivity(),ServiceConnection {
         binding.recyclerAlbumSongs.setHasFixedSize(true)
         binding.recyclerAlbumSongs.layoutManager=LinearLayoutManager(this)
         binding.recyclerAlbumSongs.adapter=detailsAdapter
+        detailsAdapter.notifyDataSetChanged()
     }
     private fun getUniqueSongs(list:ArrayList<Audio>):ArrayList<Audio>{
         val set= list.toSet()
@@ -59,7 +62,11 @@ class AlbumActivity : AppCompatActivity(),ServiceConnection {
     }
     private fun getAlbumArt(uri: String): ByteArray? {
         val retriever = MediaMetadataRetriever()
-        retriever.setDataSource(uri)
+        try{
+            retriever.setDataSource(uri)
+        }catch (e:IllegalArgumentException){
+            e.printStackTrace()
+        }
         return retriever.embeddedPicture
     }
 

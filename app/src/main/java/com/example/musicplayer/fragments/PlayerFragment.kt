@@ -86,7 +86,9 @@ class PlayerFragment : Fragment(),ServiceConnection {
     }
     private fun getAlbumImage(art:ByteArray?){
         if (art != null){
-            val bitmap=BitmapFactory.decodeByteArray(art,0,art.size)
+            val options = BitmapFactory.Options()
+            options.inSampleSize = 2 // reduce sample size by half
+            val bitmap = BitmapFactory.decodeByteArray(art, 0, art.size, options)
             binding.imgMusic.setImageBitmap(bitmap)
         }else{
             binding.imgMusic.setImageResource(R.drawable.p32)

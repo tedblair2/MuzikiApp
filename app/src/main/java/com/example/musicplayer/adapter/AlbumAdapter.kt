@@ -30,7 +30,9 @@ class AlbumAdapter(private var audioList:ArrayList<Audio>,private val context: C
         holder.binding.albumName.text=song.album
         val art=getAlbumArt(song.path)
         if (art != null){
-            val bitmap=BitmapFactory.decodeByteArray(art,0,art.size)
+            val options = BitmapFactory.Options()
+            options.inSampleSize = 2 // reduce sample size by half
+            val bitmap = BitmapFactory.decodeByteArray(art, 0, art.size, options)
             holder.binding.albumImg.setImageBitmap(bitmap)
         }else{
             holder.binding.albumImg.setImageResource(R.drawable.baseline_music_note_24)
@@ -48,8 +50,11 @@ class AlbumAdapter(private var audioList:ArrayList<Audio>,private val context: C
     }
     private fun getAlbumArt(uri: String): ByteArray? {
         val retriever = MediaMetadataRetriever()
-        retriever.setDataSource(uri)
+        try{
+            retriever.setDataSource(uri)
+        }catch (e:IllegalArgumentException){
+            e.printStackTrace()
+        }
         return retriever.embeddedPicture
     }
-
 }
