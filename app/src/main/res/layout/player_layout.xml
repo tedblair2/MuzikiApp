@@ -1,7 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:orientation="vertical"
     xmlns:tools="http://schemas.android.com/tools"
     android:elevation="1000dp"
     android:focusable="true"
@@ -45,9 +46,9 @@
 
     <RelativeLayout
         android:layout_width="match_parent"
-        android:layout_height="380dp"
+        android:layout_height="0dp"
         android:id="@+id/middle"
-        android:layout_below="@id/appbar">
+        android:layout_weight="30">
 
         <ImageView
             android:layout_width="match_parent"
@@ -95,41 +96,48 @@
             android:id="@+id/songartist"/>
     </RelativeLayout>
 
-    <SeekBar
-        android:id="@+id/seekbar"
+    <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_above="@id/bottom"
-        android:layout_marginStart="10dp"
-        android:layout_marginBottom="10dp"
-        android:layout_marginEnd="10dp"
-        android:progressTint="@color/white"
-        android:thumbTint="@color/white"/>
+        android:layout_height="0dp"
+        android:gravity="bottom"
+        android:layout_weight="7"
+        android:orientation="vertical">
+        <SeekBar
+            android:id="@+id/seekbar"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="10dp"
+            android:layout_marginBottom="10dp"
+            android:layout_marginEnd="10dp"
+            android:progressTint="@color/white"
+            android:thumbTint="@color/white"/>
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
 
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="0:00"
-        android:layout_below="@id/seekbar"
-        android:layout_marginStart="6dp"
-        android:textColor="@color/white"
-        android:id="@+id/starttime"/>
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="3:24"
-        android:layout_below="@id/seekbar"
-        android:layout_marginEnd="6dp"
-        android:textColor="@color/white"
-        android:layout_alignParentEnd="true"
-        android:id="@+id/endtime"/>
-
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="0:00"
+                android:layout_marginStart="6dp"
+                android:textColor="@color/white"
+                android:id="@+id/starttime"/>
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="3:24"
+                android:layout_marginEnd="6dp"
+                android:textColor="@color/white"
+                android:layout_alignParentEnd="true"
+                android:id="@+id/endtime"/>
+        </RelativeLayout>
+    </LinearLayout>
     <LinearLayout
         android:id="@+id/bottom"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_alignParentBottom="true"
-        android:layout_marginTop="25dp"
+        android:layout_height="0dp"
+        android:layout_weight="6"
+        android:layout_marginTop="10dp"
         android:layout_marginBottom="10dp"
         android:orientation="horizontal">
 
@@ -153,6 +161,7 @@
             android:id="@+id/play"
             android:layout_width="70dp"
             android:layout_height="70dp"
+            android:layout_gravity="center_vertical"
             android:layout_weight="1"
             android:src="@drawable/ic_pause" />
 
@@ -173,4 +182,4 @@
             android:src="@drawable/ic_repeat" />
     </LinearLayout>
 
-</RelativeLayout>
+</LinearLayout>
